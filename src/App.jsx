@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import splitStringUsingRegex from './utils/splitStringUsingRegex.tsx';
+import {motion} from 'framer-motion'
+
+const heading = "Elegant Text reveal";
+const text =
+    "🌐✨ Transform your web content using Framer Motion's UTF-16 powered text animations. Each character, a vibrant performer, dances dynamically, weaving a captivating narrative. Elevate user engagement with the art of animated storytelling. 🚀🎉 #WebDev #Animation";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const headerCharacters = splitStringUsingRegex(heading)
+    const textCharacters = splitStringUsingRegex(text)
+    const charVariants = {
+        hidden: {opacity: 0},
+        reveal: {opacity: 1}
+    }
+    console.log(headerCharacters)
+    return (
+        <>
+            <motion.h1 initial="hidden" whileInView="reveal"
+                       transition={{staggerChildren: 0.2}}>{headerCharacters.map(((char, index) => (
+                <motion.span key={index} transition={{duration: .1}} variants={charVariants}>{char}</motion.span>
+            )))}</motion.h1>
+            <motion.p initial="hidden" whileInView="reveal"
+                      transition={{staggerChildren: 0.05}}>{textCharacters.map(((char, index) => (
+                <motion.span key={index} transition={{duration: .35}} variants={charVariants}>{char}</motion.span>
+            )))}</motion.p>
+        </>
+    )
 }
 
 export default App
