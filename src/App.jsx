@@ -2,7 +2,7 @@ import './App.css'
 import splitStringUsingRegex from './utils/splitStringUsingRegex.tsx';
 import {motion} from 'framer-motion'
 
-const heading = "Elegant Text reveal1";
+const heading = "Elegant Text reveal";
 const text =
     "🌐✨ Transform your web content using Framer Motion's UTF-16 powered text animations. Each character, a vibrant performer, dances dynamically, weaving a captivating narrative. Elevate user engagement with the art of animated storytelling. 🚀🎉 #WebDev #Animation";
 
